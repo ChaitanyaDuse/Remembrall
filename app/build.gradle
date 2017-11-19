@@ -2,19 +2,13 @@ apply plugin: 'com.android.application'
 
 android {
     signingConfigs {
-        config {
-            keyAlias 'todo'
-            keyPassword 'password'
-            storeFile file('D:/AndroidSamples/keystore.jks')
-            storePassword 'password'
-        }
     }
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    compileSdkVersion 26
     buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
         applicationId "com.dnr.todoapksize"
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        minSdkVersion 23
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
 
@@ -30,8 +24,8 @@ android {
         }
 
         release {
-            minifyEnabled false
-            useProguard false
+            minifyEnabled true
+            useProguard true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguardTest-rules.pro'
         }
@@ -44,8 +38,7 @@ android {
         }
         prod {
             dimension "default"
-            minSdkVersion 23
-            signingConfig signingConfigs.config
+            targetSdkVersion 26
         }
     }
     // Remove mockRelease as it's not needed.
@@ -81,6 +74,10 @@ dependencies {
     compile "com.google.guava:guava:$rootProject.guavaVersion"
     compile "android.arch.persistence.room:runtime:$rootProject.roomVersion"
     annotationProcessor "android.arch.persistence.room:compiler:$rootProject.roomVersion"
+    compile 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    compile 'com.google.dagger:dagger:2.13'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.13'
 
     // Dependencies for local unit tests
     testCompile "junit:junit:$rootProject.ext.junitVersion"
