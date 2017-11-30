@@ -126,7 +126,8 @@
 -keep class butterknife.*
 -keepclasseswithmembernames class * { @butterknife.* <methods>; }
 -keepclasseswithmembernames class * { @butterknife.* <fields>; }
-
+# keep the class and specified members from being removed or renamed
+-keep class com.dnr.todoapksize.data.UnusedClassForProguard { *; }
 #Realm
 -keep class io.realm.annotations.RealmModule
 -keep @io.realm.annotations.RealmModule class *
